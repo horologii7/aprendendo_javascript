@@ -1,0 +1,1 @@
+Aqui eu dei uma reforçada no Javascript para começar a estudar React de uma forma melhor.
