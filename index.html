@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Curso Javascript</title>
+  </head>
+  <body>
+    <button id="btnCreate" onclick="createSquare()">Criar quadrado</button>
+    <button id="btnCreateList" onclick="createList()">Criar Lista</button>
+    <input type="text" name="nome">
+    <button onClick="adicionar()">Adicionar nome na lista</button>
+
+    <div id="spaceSquare"></div>
+    <div id="listNames"></div>
+
+    <script>
+      var nomes = ["Diego", "Gabriel", "Lucas"];
+      
+      function adicionar() {
+        var newName = document.querySelector('input[name=nome]')
+        nomes.push(newName.value);
+        
+        var lists = document.querySelectorAll('ul');
+        for (var i=0;i<lists.length;i++) {
+          var newLi = document.createElement('li');
+          var textNewLi = document.createTextNode(newName.value);
+          newLi.appendChild(textNewLi);
+          var list = lists[i];
+          list.appendChild(newLi);
+        }
+
+        newName.value = '';
+      }
+
+      function createList() {
+        var newUl = document.createElement('ul');
+        for (var i=0;i<nomes.length;i++){
+          var newLi = document.createElement('li');
+          var textNewLi = document.createTextNode(nomes[i]);
+          newLi.appendChild(textNewLi);
+          newUl.appendChild(newLi);
+        }
+        var listNames = document.querySelector('div#listNames');
+        listNames.appendChild(newUl);
+      }
+
+      var spaceSquare = document.querySelector('div#spaceSquare');
+
+      function createSquare() {
+        var newElement = document.createElement('div');
+        newElement.setAttribute('class', 'box');
+        newElement.style.width = 100;
+        newElement.style.height = 100;
+        newElement.style.backgroundColor = '#f00';
+        newElement.style.margin = 10;
+        newElement.addEventListener('mouseenter', changeSquare)
+        spaceSquare.appendChild(newElement);
+      }
+
+      function changeSquare() {
+        this.style.backgroundColor = getRandomColor();
+      }
+
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+    </script>
+  </body>
+</html>
